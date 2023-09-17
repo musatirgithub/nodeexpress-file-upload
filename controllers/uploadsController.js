@@ -16,6 +16,12 @@ const uploadProductImage = async (req,res)=>{
         throw new customError.BadRequestError('Please upload an image')
     }
 
+    const maxSize = 1000
+
+    if(productImage.size > maxSize){
+        throw new customError.BadRequestError('Image size should be less than 1KB')
+    }
+
     const imagePath= path.join(__dirname, '../public/uploads/'+`${productImage.name}`);
     await productImage.mv(imagePath)
 
