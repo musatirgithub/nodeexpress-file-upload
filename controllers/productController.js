@@ -9,11 +9,12 @@ const createProduct = async (req,res)=>{
 
     }
 
-    res.send(StatusCodes.CREATED).json({product})
+    res.status(StatusCodes.CREATED).json({product})
 }
 
 const getAllProducts = async(req,res)=>{
-    res.send('list of products')
+    const products = await Product.find({})
+    res.status(StatusCodes.OK).json({products})
 }
 
 module.exports = {createProduct, getAllProducts}
